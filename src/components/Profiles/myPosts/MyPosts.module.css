@@ -1,1 +1,7 @@
+.myposts {
+  padding: 10px;
+}
 
+.myposts__posts {
+  margin-top: 10px;
+}
