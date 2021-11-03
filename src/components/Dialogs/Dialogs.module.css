@@ -12,10 +12,12 @@
 }
 
 .dialogs__dialog {
+  color: white;
 }
 
 .dialogs__messages {
   padding: 10px;
+  color: white;
 }
 
 .dialogs__message {
