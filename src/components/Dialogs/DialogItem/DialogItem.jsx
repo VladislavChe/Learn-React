@@ -4,7 +4,6 @@ import s from './../Dialogs.module.css'; // link css
 
 // Функция создания диалогов
 const DialogItem = (props) => {
-  // Создание переменной с сылкой на диалог с конкретным id
   let path = '/dialogs/' + props.id;
   return (
     <div className={s.dialogs__dialog + ' ' + s.active}>
