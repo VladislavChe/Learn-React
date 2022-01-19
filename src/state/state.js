@@ -26,6 +26,7 @@ let store = {
         { id: 4, message: 'Yo' },
         { id: 5, message: 'Yo' },
       ],
+      newMessage: '',
     },
   },
   getState() {
@@ -46,6 +47,20 @@ let store = {
   },
   updateNewPostText(newText) {
     this._state.profilePage.newPostText = newText;
+    this._callSubscriber(this._state);
+  },
+
+  addMessage() {
+    let newMessage = {
+      id: 6,
+      message: this._state.dialogsPage.newMessage,
+    };
+    this._state.dialogsPage.messages.push(newMessage);
+    this._state.dialogsPage.newMessage = '';
+    this._callSubscriber(this._state);
+  },
+  updateMessage(newText) {
+    this._state.dialogsPage.newMessage = newText;
     this._callSubscriber(this._state);
   },
   subscribe(observer) {

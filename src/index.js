@@ -13,6 +13,9 @@ let rerendeEntireTree = (state) => {
         state={state}
         addPost={store.addPost.bind(store)}
         updateNewPostText={store.updateNewPostText.bind(store)}
+        addMessage={store.addMessage.bind(store)}
+        updateMessage={store.updateMessage.bind(store)}
+        newMessage={store._state.dialogsPage.newMessage}
       />
     </BrowserRouter>,
     document.getElementById('root')
