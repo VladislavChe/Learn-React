@@ -10,12 +10,12 @@ const MyPosts = (props) => {
   let newPostElemnt = React.createRef();
 
   let addPost = () => {
-    props.addPost();
+    props.dispatch({ type: 'ADD-POST' });
   };
 
   let onPostChage = () => {
     let text = newPostElemnt.current.value;
-    props.updateNewPostText(text);
+    props.dispatch({ type: 'UPDATE-NEW-POST-TEXT', newText: text });
   };
 
   return (

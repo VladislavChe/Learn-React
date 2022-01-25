@@ -9,14 +9,7 @@ import store from './state/state';
 let rerendeEntireTree = (state) => {
   ReactDOM.render(
     <BrowserRouter>
-      <App
-        state={state}
-        addPost={store.addPost.bind(store)}
-        updateNewPostText={store.updateNewPostText.bind(store)}
-        addMessage={store.addMessage.bind(store)}
-        updateMessage={store.updateMessage.bind(store)}
-        newMessage={store._state.dialogsPage.newMessage}
-      />
+      <App state={state} dispatch={store.dispatch.bind(store)} />
     </BrowserRouter>,
     document.getElementById('root')
   );
