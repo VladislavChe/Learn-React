@@ -1,6 +1,10 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import MyPost from './Post/MyPost';
+import {
+  addPostActionCreator,
+  updateNewPostTextActionCreator,
+} from '../../../state/state';
 
 const MyPosts = (props) => {
   let postsElements = props.posts.map((post) => (
@@ -10,12 +14,12 @@ const MyPosts = (props) => {
   let newPostElemnt = React.createRef();
 
   let addPost = () => {
-    props.dispatch({ type: 'ADD-POST' });
+    props.dispatch(addPostActionCreator());
   };
 
   let onPostChage = () => {
     let text = newPostElemnt.current.value;
-    props.dispatch({ type: 'UPDATE-NEW-POST-TEXT', newText: text });
+    props.dispatch(updateNewPostTextActionCreator(text));
   };
 
   return (
