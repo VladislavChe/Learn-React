@@ -1,3 +1,12 @@
 .usersPhoto {
   width: 100px;
 }
+
+.pageNumber {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.selectedPage {
+  font-weight: bold;
+}
