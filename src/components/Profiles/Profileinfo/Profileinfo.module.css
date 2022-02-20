@@ -5,4 +5,18 @@
 
 .profileinfo__description {
   padding: 10px;
+  display: flex;
+}
+
+.profileinfo__descriptionWrapp {
+  margin-left: 10px;
+}
+
+.profileinfo__descriptionWrapp div {
+  color: green;
+}
+
+.profileinfo__descriptionWrapp span {
+  color: black;
+  font-weight: bold;
 }
