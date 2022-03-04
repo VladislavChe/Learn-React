@@ -1,14 +1,15 @@
-import './App.css';
-import Navbar from './components/Navbar/Navbar';
-import ProfileContainer from './components/Profiles/ProfileContainer';
-import News from './components/News/News';
-import Music from './components/Music/Music';
-import Settings from './components/Settings/Settings';
 import { Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
+import './App.css';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
-import UsersContainer from './components/Users/UsersContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
+import LoginPage from './components/Login/Login';
+import Music from './components/Music/Music';
+import Navbar from './components/Navbar/Navbar';
+import News from './components/News/News';
+import ProfileContainer from './components/Profiles/ProfileContainer';
+import Settings from './components/Settings/Settings';
+import UsersContainer from './components/Users/UsersContainer';
 
 const App = (props) => {
   return (
@@ -24,6 +25,7 @@ const App = (props) => {
           <Route path="/music" component={Music} />
           <Route path="/users" render={() => <UsersContainer />} />
           <Route path="/settings" component={Settings} />
+          <Route path="/login" component={LoginPage} />
         </div>
       </div>
     </BrowserRouter>
