@@ -1,6 +1,7 @@
 import React from 'react';
 import Preloader from '../../common/preloader/Plreloader';
 import s from './Profileinfo.module.css';
+import ProfileStatus from './ProfileStatus';
 
 const Profileinfo = (props) => {
   if (!props.profile) {
@@ -10,11 +11,11 @@ const Profileinfo = (props) => {
   return (
     <div>
       <div>
-        <img
+        {/* <img
           className={s.content__img}
           src="https://cf.bstatic.com/data/xphoto/1182x887/202/20233869.jpg?size=S"
           alt="foto"
-        />
+        /> */}
       </div>
       <div className={s.profileinfo__description}>
         <img alt="avatar" src={props.profile.photos.small} />
@@ -36,6 +37,7 @@ const Profileinfo = (props) => {
             <a href="https://www.instagram.com/">{props.profile.contacts.instagram}</a>
           </div>
         </div>
+        <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
       </div>
     </div>
   );
