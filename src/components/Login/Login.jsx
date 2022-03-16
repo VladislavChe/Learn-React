@@ -1,21 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
+import { login } from '../../redux/auth-reducer';
 import { maxLengthCreator, required } from './../../utils/validators/validators';
 import { Input } from './../common/formsControls/formsControls';
 
-let maxLength20 = maxLengthCreator(20);
-
-const Login = () => {
-  const onSubmit = (formData) => {
-    console.log(formData);
-  };
-  return (
-    <div>
-      <h1>LOGIN</h1>
-      <LoginReduxForm onSubmit={onSubmit} />
-    </div>
-  );
-};
+let maxLength20 = maxLengthCreator(50);
 
 const LoginForm = (props) => {
   return (
@@ -23,8 +14,8 @@ const LoginForm = (props) => {
       <div>
         <Field
           validate={[required, maxLength20]}
-          placeholder={'Login'}
-          name={'login'}
+          placeholder={'Email'}
+          name={'email'}
           component={Input}
         />
       </div>
@@ -33,17 +24,12 @@ const LoginForm = (props) => {
           validate={[required, maxLength20]}
           placeholder={'Password'}
           name={'password'}
+          type={'password'}
           component={Input}
         />
       </div>
       <div>
-        <Field
-          validate={[required, maxLength20]}
-          type={'checkbox'}
-          name={'rememberMe'}
-          component={Input}
-        />{' '}
-        remember Me
+        <Field type={'checkbox'} name={'rememberMe'} component={Input} /> remember Me
       </div>
       <div>
         <button>Login</button>
@@ -57,4 +43,22 @@ const LoginReduxForm = reduxForm({
   fields: ['firstName', 'lastName', 'email'], // поля в вашей форме
 })(LoginForm);
 
-export default Login;
+const Login = (props) => {
+  const onSubmit = (formData) => {
+    props.login(formData.email, formData.password, formData.rememberMe);
+  };
+  if (props.isAuth) {
+    return <Redirect to={'/profile'} />;
+  }
+  return (
+    <div>
+      <h1>LOGIN</h1>
+      <LoginReduxForm onSubmit={onSubmit} />
+    </div>
+  );
+};
+
+const mapStateToProps = (state) => ({
+  isAuth: state.auth.isAuth,
+});
+export default connect(mapStateToProps, { login })(Login);
