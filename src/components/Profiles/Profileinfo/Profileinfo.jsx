@@ -1,7 +1,7 @@
-import React from 'react';
-import Preloader from '../../common/preloader/Plreloader';
-import s from './Profileinfo.module.css';
-import ProfileStatus from './ProfileStatus';
+import React from "react";
+import Preloader from "../../common/preloader/Plreloader";
+import s from "./Profileinfo.module.css";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const Profileinfo = (props) => {
   if (!props.profile) {
@@ -27,17 +27,24 @@ const Profileinfo = (props) => {
             <span>status:</span> {props.profile.aboutMe}
           </div>
           <div>
-            <span>working:</span> {props.profile.lookingForAJob === true ? 'не работаю' : 'работаю'}
+            <span>working:</span>{" "}
+            {props.profile.lookingForAJob === true ? "не работаю" : "работаю"}
           </div>
           <div>
-            <span>VK:</span> <a href="https://www.vk.com/">{props.profile.contacts.vk}</a>
+            <span>VK:</span>{" "}
+            <a href="https://www.vk.com/">{props.profile.contacts.vk}</a>
           </div>
           <div>
-            <span>instagram:</span>{' '}
-            <a href="https://www.instagram.com/">{props.profile.contacts.instagram}</a>
+            <span>instagram:</span>{" "}
+            <a href="https://www.instagram.com/">
+              {props.profile.contacts.instagram}
+            </a>
           </div>
         </div>
-        <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
+        <ProfileStatusWithHooks
+          status={props.status}
+          updateStatus={props.updateStatus}
+        />
       </div>
     </div>
   );

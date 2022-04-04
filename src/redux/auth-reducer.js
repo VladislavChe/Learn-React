@@ -1,7 +1,9 @@
-import { usersAPI } from '../API/api';
-import { authAPI } from './../API/api';
+import { usersAPI } from "../API/api";
+import { authAPI } from "./../API/api";
+import { stopSubmit } from "redux-form";
+import { act } from "@testing-library/react";
 
-const SET_USER_DATA = 'SET_USER_DATA';
+const SET_USER_DATA = "SET_USER_DATA";
 
 let initialState = {
   userId: null,
@@ -37,7 +39,7 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({
 //Thunk creators
 export const getAuthUserData = () => {
   return (dispatch) => {
-    usersAPI.setUserData().then((response) => {
+    return usersAPI.setUserData().then((response) => {
       if (response.data.resultCode === 0) {
         let { id, login, email } = response.data.data;
         dispatch(setAuthUserData(id, email, login, true));
@@ -51,6 +53,13 @@ export const login = (email, password, rememberMe) => {
     authAPI.login(email, password, rememberMe).then((response) => {
       if (response.data.resultCode === 0) {
         dispatch(getAuthUserData());
+      } else {
+        let message =
+          response.data.messages.length > 0
+            ? response.data.messages[0]
+            : "Some error";
+
+        dispatch(stopSubmit("Login", { email: message }));
       }
     });
   };

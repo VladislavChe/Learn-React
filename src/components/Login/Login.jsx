@@ -1,10 +1,14 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { Field, reduxForm } from 'redux-form';
-import { login } from '../../redux/auth-reducer';
-import { maxLengthCreator, required } from './../../utils/validators/validators';
-import { Input } from './../common/formsControls/formsControls';
+import React from "react";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { Field, reduxForm } from "redux-form";
+import { login } from "../../redux/auth-reducer";
+import {
+  maxLengthCreator,
+  required,
+} from "./../../utils/validators/validators";
+import { Input } from "./../common/formsControls/formsControls";
+import style from "../../components/common/formsControls/formsControls.module.css";
 
 let maxLength20 = maxLengthCreator(50);
 
@@ -14,23 +18,27 @@ const LoginForm = (props) => {
       <div>
         <Field
           validate={[required, maxLength20]}
-          placeholder={'Email'}
-          name={'email'}
+          placeholder={"Email"}
+          name={"email"}
           component={Input}
         />
       </div>
       <div>
         <Field
           validate={[required, maxLength20]}
-          placeholder={'Password'}
-          name={'password'}
-          type={'password'}
+          placeholder={"Password"}
+          name={"password"}
+          type={"password"}
           component={Input}
         />
       </div>
       <div>
-        <Field type={'checkbox'} name={'rememberMe'} component={Input} /> remember Me
+        <Field type={"checkbox"} name={"rememberMe"} component={Input} />{" "}
+        remember Me
       </div>
+      {props.error && (
+        <div className={style.formSummaryError}>{props.error}</div>
+      )}
       <div>
         <button>Login</button>
       </div>
@@ -39,8 +47,8 @@ const LoginForm = (props) => {
 };
 
 const LoginReduxForm = reduxForm({
-  form: 'Login', // Уникальное имя формы
-  fields: ['firstName', 'lastName', 'email'], // поля в вашей форме
+  form: "Login", // Уникальное имя формы
+  fields: ["firstName", "lastName", "email"], // поля в вашей форме
 })(LoginForm);
 
 const Login = (props) => {
@@ -48,7 +56,7 @@ const Login = (props) => {
     props.login(formData.email, formData.password, formData.rememberMe);
   };
   if (props.isAuth) {
-    return <Redirect to={'/profile'} />;
+    return <Redirect to={"/profile"} />;
   }
   return (
     <div>
